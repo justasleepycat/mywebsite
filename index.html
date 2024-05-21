@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
     <head>
-        <title>Yes</title>
+        <title>About me</title>
     </head>
 
-    <body>
-        <h1>Test</h1>
+    <style>
+        .text {
+        display: inline-block;
+        vertical-align: top;
+        }
+    </style>
+
+    <body style="background-color: rgb(55, 55, 55);">
+        <h1 style="font-family: monospace; color: white;">Hello!</h1>
+        <img src="https://avatars.githubusercontent.com/u/153748207?v=4" width="125" height="125" title="SleepyCatto" style="display: inline-block; color:white">
+        <p class="text" style="font-family: monospace; color:white">I am SleepyCatto<br><br>I like programming in c++, lua, c# and a bit of assembly<br></p>
+        
+        <div id="currentTime" style="font-family: monospace; display: inline-block;">In my timezone it is currently </div>
+        
+        <script>
+            function updateTime() {
+                const now = new Date()
+                var hourTime = (now.getUTCHours() + 2)
+                var minsTime = (now.getUTCMinutes())
+                var secondsTime = (now.getUTCSeconds())
+
+                if (hourTime < 10) {
+                    hourTime = "0" + hourTime
+                }
+
+                if (minsTime < 10) {
+                    minsTime = "0" + minsTime
+                }
+
+                if (secondsTime < 10) {
+                    secondsTime = " " + secondsTime
+                }
+
+                var targetElement = document.getElementById("currentTime")
+                targetElement.textContent = "In my timezone it is currently " + hourTime + ":" + minsTime + ":" + secondsTime
+                targetElement.style.fontFamily = "monospace"
+            }
+            setInterval(() => {
+                updateTime()
+            }, 1000);
+        </script>
+        
+    
+        
     </body>
 </html>
+
+
+<!-- 
+
+    E
+-->
