@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <title>About me</title>
+        <title style="font-family: monospace;">About me</title>
     </head>
 
     <style>
@@ -17,8 +17,31 @@
         <p class="text" style="font-family: monospace; color:white">I am SleepyCatto<br><br>I like programming in c++, lua, c# and a bit of assembly<br></p>
         
         <div id="currentTime" style="font-family: monospace; color: white;">In my timezone it is currently </div>
-        
+
         <script>
+            function convertToAmericanTimes(hours, minutes, seconds) {
+                var newHours, newMinutes, newSeconds, hourlyTime;
+                //hours = 12
+                if (hours == 24) {
+                    newHours = "12"
+                    hourlyTime = "am"
+                } else if (hours < 12) {
+                    newHours = `${hours}`
+                    hourlyTime = "am"
+                } else if (hours == 12) {
+                    newHours = `12`
+                    hourlyTime = "pm"
+                } else if (hours > 12) {
+                    newHours = hours - 12
+                    hourlyTime = "pm"
+                }
+
+                newMinutes = minutes
+                newSeconds = seconds
+
+                return `${newHours}:${newMinutes}:${newSeconds} ${hourlyTime}`
+            }
+
             function updateTime() {
                 const now = new Date()
                 var hourTime = (now.getUTCHours() + 2)
@@ -26,25 +49,28 @@
                 var secondsTime = (now.getUTCSeconds())
 
                 if (hourTime < 10) {
-                    hourTime = "0" + hourTime
+                    hourTime = `0${hourTime}`
                 }
 
                 if (minsTime < 10) {
-                    minsTime = "0" + minsTime
+                    minsTime = `0${minsTime}`
                 }
 
                 if (secondsTime < 10) {
-                    secondsTime = "0" + secondsTime
+                    secondsTime = `0${secondsTime}`
                 }
 
                 var targetElement = document.getElementById("currentTime")
-                targetElement.textContent = "In my timezone it is currently " + hourTime + ":" + minsTime + ":" + secondsTime
+                targetElement.textContent = `In my timezone it is currently ${hourTime}:${minsTime}:${secondsTime} or ${convertToAmericanTimes(hourTime, minsTime, secondsTime)}`
                 targetElement.style.fontFamily = "monospace"
             }
+            
             setInterval(() => {
                 updateTime()
             }, 1000);
         </script>
+
+        
         
     
         
