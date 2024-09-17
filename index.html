@@ -1,84 +1,74 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <title style="font-family: monospace;">About me</title>
+        <title>About me</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="https://avatars.githubusercontent.com/u/153748207?v=4">
+        <link rel="stylesheet" href="/styles.css">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+
+
     </head>
-
-    <style>
-        .text {
-        display: inline-block;
-        vertical-align: top;
-        }
-    </style>
-
-    <body style="background-color: rgb(55, 55, 55);">
-        <h1 style="font-family: monospace; color: white;">Hello!</h1>
-        <img src="https://avatars.githubusercontent.com/u/153748207?v=4" width="125" height="125" title="SleepyCatto" style="display: inline-block; color:white">
-        <p class="text" style="font-family: monospace; color:white">I am SleepyCatto<br><br>I like programming in c++, lua, c# and a bit of assembly<br></p>
-        
-        <div id="currentTime" style="font-family: monospace; color: white;">In my timezone it is currently </div>
-
+    <body>
+        <header class="header-container">
+            <span style="font-size: 1vw; margin-top: 1.25vh; margin-left:1vw; display: inline-block;">Welcome to my about me</span>
+        </header>
+        <div class="about-container">
+            <img src="https://avatars.githubusercontent.com/u/153748207?v=4" alt="SleepyCatto" class="about-logo">
+            <ul class="about-description">
+                <li style="list-style-type: none; margin-top:1em;">
+                    <button class="description-section" id="info" onclick="toggleItem('info')" shouldexpand=0>
+                        Information
+                        <label for="description-section" style="margin-top:-0.8vh; float:inline-end; margin-right:0.5vw; color:white; font-size: 1.5vw; transition-duration: 0.2 all;">▢</label>
+                    </button>
+                    <div class="description-text" shouldexpand=0>
+                        I really love programming in C++ aswell as in Lua. <br>
+                        I've been programming Lua since I was 12 years old and I don't think that I will stop using it. <br>
+                        Furthermore, the reason why I love programming is that back when I was 12, I would always cheat in video games and I would just take all the scripts without making any myself. <br>
+                        But one day I was playing a game which had no scripts written for it, so I decided to learn how "scripting" works and found out about Lua. <br>
+                        This continued to go on until I found out about interal and external cheats etc.
+                    </div>
+                </li>
+                <li style="list-style-type: none; margin-top:1em;">
+                    <button class="description-section" id="Interests" onclick="toggleItem('Interests')" shouldexpand=0>
+                        Interests
+                        <label for="description-section" style="margin-top:-0.8vh; float:inline-end; margin-right:0.5vw; color:white; font-size: 1.5vw; transition-duration: 0.2 all;">▢</label>
+                    </button>
+                    <div class="description-text" shouldexpand=0>
+                        Programming in C++, Lua, HTML, CSS and a bit of javascript <br>
+                        Playing videogames like Helldivers 2, Minecraft or Roblox <br>
+                        Murder Drones (Season 2 Cope is crazy - I participate) <br>
+                        I also like watching <a href="https://www.youtube.com/@Markiplier" target="_blank" style="color: white;">Markiplier</a> aswell as <a href="https://www.youtube.com/@caseoh_" target="_blank" style="color: white;">CaseOh</a> and some other youtubers
+                    </div>
+                </li>
+                <li style="list-style-type: none; margin-top:1em;">
+                    <button class="description-section" id="Contact" onclick="toggleItem('Contact')" shouldexpand=0>
+                        Contact
+                        <label for="description-section" style="margin-top:-0.8vh; float:inline-end; margin-right:0.5vw; color:white; font-size: 1.5vw; transition-duration: 0.2 all;">▢</label>
+                    </button>
+                    <div class="description-text" shouldexpand=0>
+                        Discord: #justasleepycat <br>
+                        Email: justasleepycat2008@gmail.com (I obviously won't use my main email)
+                    </div>
+                </li>
+            </ul>
+        </div>
         <script>
-            function convertToAmericanTimes(hours, minutes, seconds) {
-                var newHours, newMinutes, newSeconds, hourlyTime;
-                //hours = 12
-                if (hours == 24) {
-                    newHours = "12"
-                    hourlyTime = "am"
-                } else if (hours < 12) {
-                    newHours = `${hours}`
-                    hourlyTime = "am"
-                } else if (hours == 12) {
-                    newHours = `12`
-                    hourlyTime = "pm"
-                } else if (hours > 12) {
-                    newHours = hours - 12
-                    hourlyTime = "pm"
-                }
+            function toggleItem(item) {
+                var element = document.getElementById(item); if (element == null) return;
+                var parentElement = element.parentElement;
+                var descriptionElement = parentElement.children[1]
+                var label = element.firstElementChild;
+                var shouldexpand = element.attributes.shouldexpand.value == 1;
+                var newState = !shouldexpand
 
-                newMinutes = minutes
-                newSeconds = seconds
-
-                return `${newHours}:${newMinutes}:${newSeconds} ${hourlyTime}`
+                label.innerHTML = newState ? "▣" : "▢"
+                element.attributes.shouldexpand.value = newState ? 1 : 0;
+                descriptionElement.attributes.shouldexpand.value = newState ? 1 : 0;
             }
 
-            function updateTime() {
-                const now = new Date()
-                var hourTime = (now.getUTCHours() + 2)
-                var minsTime = (now.getUTCMinutes())
-                var secondsTime = (now.getUTCSeconds())
-
-                if (hourTime < 10) {
-                    hourTime = `0${hourTime}`
-                }
-
-                if (minsTime < 10) {
-                    minsTime = `0${minsTime}`
-                }
-
-                if (secondsTime < 10) {
-                    secondsTime = `0${secondsTime}`
-                }
-
-                var targetElement = document.getElementById("currentTime")
-                targetElement.textContent = `In my timezone it is currently ${hourTime}:${minsTime}:${secondsTime} or ${convertToAmericanTimes(hourTime, minsTime, secondsTime)}`
-                targetElement.style.fontFamily = "monospace"
-            }
-            
-            setInterval(() => {
-                updateTime()
-            }, 50);
+            toggleItem("info")
         </script>
-
-        
-        
-    
-        
     </body>
 </html>
-
-
-<!-- 
-
-    E
--->
