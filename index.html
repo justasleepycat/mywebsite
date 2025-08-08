@@ -1,75 +1,154 @@
-
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <title>About me</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="https://avatars.githubusercontent.com/u/153748207?v=4">
-        <link rel="stylesheet" href="styles.css">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta charset="UTF-8">
-
-
-    </head>
-    <body>
-        <header class="header-container">
-            <span style="font-size: 1vw; margin-top: 1.25vh; margin-left:1vw; display: inline-block;">Welcome to my about me</span>
-        </header>
-        <div class="about-container">
-            <img src="https://avatars.githubusercontent.com/u/153748207?v=4" alt="SleepyCatto" class="about-logo">
-            <ul class="about-description">
-                <li style="list-style-type: none; margin-top:1em;">
-                    <button class="description-section" id="info" onclick="toggleItem('info')" shouldexpand=0>
-                        Information
-                        <label for="description-section" style="margin-top:-0.8vh; float:inline-end; margin-right:0.5vw; color:white; font-size: 1.5vw; transition-duration: 0.2 all;">▢</label>
-                    </button>
-                    <div class="description-text" shouldexpand=0>
-                        I really love programming in C++ aswell as in Lua. <br>
-                        I've been programming Lua since I was 12 years old and I don't think that I will stop using it. <br>
-                        Furthermore, the reason why I love programming is that back when I was 12, I would always cheat in video games and I would just take all the scripts without making any myself. <br>
-                        But one day I was playing a game which had no scripts written for it, so I decided to learn how "scripting" works and found out about Lua. <br>
-                        This continued to go on until I found out about interal and external cheats etc.
-                    </div>
-                </li>
-                <li style="list-style-type: none; margin-top:1em;">
-                    <button class="description-section" id="Interests" onclick="toggleItem('Interests')" shouldexpand=0>
-                        Interests
-                        <label for="description-section" style="margin-top:-0.8vh; float:inline-end; margin-right:0.5vw; color:white; font-size: 1.5vw; transition-duration: 0.2 all;">▢</label>
-                    </button>
-                    <div class="description-text" shouldexpand=0>
-                        Programming in C++, Lua, HTML, CSS and a bit of javascript <br>
-                        Playing videogames like Helldivers 2, Minecraft or Roblox <br>
-                        Murder Drones (Season 2 Cope is crazy - I participate) <br>
-                        I also like watching <a href="https://www.youtube.com/@Markiplier" target="_blank" style="color: white;">Markiplier</a> aswell as <a href="https://www.youtube.com/@caseoh_" target="_blank" style="color: white;">CaseOh</a> and some other youtubers
-                    </div>
-                </li>
-                <li style="list-style-type: none; margin-top:1em;">
-                    <button class="description-section" id="Contact" onclick="toggleItem('Contact')" shouldexpand=0>
-                        Contact
-                        <label for="description-section" style="margin-top:-0.8vh; float:inline-end; margin-right:0.5vw; color:white; font-size: 1.5vw; transition-duration: 0.2 all;">▢</label>
-                    </button>
-                    <div class="description-text" shouldexpand=0>
-                        Discord: #justasleepycat <br>
-                        Email: justasleepycat2008@gmail.com (I obviously won't use my main email)
-                    </div>
-                </li>
-            </ul>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | JustASleepyCat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            position: relative;
+            overflow: hidden;
+        }
+        .rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .drop {
+            position: absolute;
+            width: 1px;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            animation: rain 1s linear infinite;
+        }
+        @keyframes rain {
+            from { transform: translateY(-100vh); }
+            to { transform: translateY(100vh); }
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans overflow-auto">
+    <header class="gradient-bg py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex justify-center mb-6">
+                <img src="https://avatars.githubusercontent.com/u/153748207?v=4" alt="SleepyCatto" class="rounded-full h-32 w-32 border-4 border-white shadow-lg">
+            </div>
+            <h1 class="text-4xl font-bold mb-2">JustASleepyCat</h1>
+            <p class="text-xl text-gray-300">Programmer & Gamer</p>
         </div>
-        <script>
-            function toggleItem(item) {
-                var element = document.getElementById(item); if (element == null) return;
-                var parentElement = element.parentElement;
-                var descriptionElement = parentElement.children[1]
-                var label = element.firstElementChild;
-                var shouldexpand = element.attributes.shouldexpand.value == 1;
-                var newState = !shouldexpand
+    </header>
 
-                label.innerHTML = newState ? "▣" : "▢"
-                element.attributes.shouldexpand.value = newState ? 1 : 0;
-                descriptionElement.attributes.shouldexpand.value = newState ? 1 : 0;
+    <main class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-red-400 border-b border-red-700 pb-2">My Journey</h2>
+            <div class="bg-gray-800 rounded-lg p-6 shadow-lg transition-all card-hover">
+                <p class="mb-4">I really love programming in C++ as well as in Lua. I've been programming Lua since I was 12 years old and I don't think that I will stop using it.</p>
+                <p class="mb-4">Furthermore, the reason why I love programming is that back when I was 12, I would always cheat in video games and I would just take all the scripts without making any myself.</p>
+                <p>But one day I was playing a game which had no scripts written for it, so I decided to learn how "scripting" works and found out about Lua. This continued to go on until I found out about internal and external cheats etc.</p>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-red-400 border-b border-red-700 pb-2">Interests & Hobbies</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg transition-all card-hover">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-400 flex items-center">
+                        <i class="fas fa-code mr-2"></i> Programming
+                    </h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-angle-right text-red-400 mr-2"></i> C++</li>
+                        <li class="flex items-center"><i class="fas fa-angle-right text-red-400 mr-2"></i> Lua</li>
+                        <li class="flex items-center"><i class="fas fa-angle-right text-red-400 mr-2"></i> HTML/CSS</li>
+                        <li class="flex items-center"><i class="fas fa-angle-right text-red-400 mr-2"></i> JavaScript</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg transition-all card-hover">
+                    <h3 class="text-xl font-semibold mb-4 text-green-400 flex items-center">
+                        <i class="fas fa-gamepad mr-2"></i> Gaming
+                    </h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-angle-right text-red-400 mr-2"></i> Helldivers 2</li>
+                        <li class="flex items-center"><i class="fas fa-angle-right text-red-400 mr-2"></i> Minecraft</li>
+                        <li class="flex items-center"><i class="fas fa-angle-right text-red-400 mr-2"></i> Roblox</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg transition-all card-hover">
+                    <h3 class="text-xl font-semibold mb-4 text-red-400 flex items-center">
+                        <i class="fas fa-tv mr-2"></i> Entertainment
+                    </h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-angle-right text-red-400 mr-2"></i> Murder Drones (Season 2 Cope is crazy - I participate)</li>
+                        <li class="flex items-center"><i class="fas fa-angle-right text-red-400 mr-2"></i> <a href="https://www.youtube.com/@Markiplier" class="text-red-400 hover:underline">Markiplier</a></li>
+                        <li class="flex items-center"><i class="fas fa-angle-right text-red-400 mr-2"></i> <a href="https://www.youtube.com/@caseoh_" class="text-red-400 hover:underline">CaseOh</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold mb-6 text-red-400 border-b border-red-700 pb-2">Contact Me</h2>
+            <div class="bg-gray-800 rounded-lg p-6 shadow-lg transition-all card-hover">
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <i class="fab fa-discord text-indigo-400 text-xl w-8"></i>
+                        <span class="ml-2">Discord: <span class="font-mono">#sleepycattos</span></span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-red-400 text-xl w-8"></i>
+                        <span class="ml-2">Email: <span class="font-mono">justasleepycat2008@gmail.com</span> <span class="text-sm text-gray-400">(I obviously won't use my main email)</span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="gradient-bg py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center text-gray-300">
+            <p>© 2025 JustASleepyCat. All rights reserved.</p>
+            <p class="mt-2 text-sm">Last updated: August 8, 2025</p>
+        </div>
+    </footer>
+
+    <div class="rain" id="rain"></div>
+
+    <script>
+        function createRain() {
+            const rain = document.getElementById('rain');
+            rain.innerHTML = '';
+            
+            const dropsCount = Math.floor(window.innerWidth / 3);
+            
+            for (let i = 0; i < dropsCount; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'drop';
+                drop.style.left = Math.random() * window.innerWidth + 'px';
+                drop.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's';
+                drop.style.animationDelay = Math.random() + 's';
+                drop.style.opacity = Math.random() * 0.6 + 0.2;
+                drop.style.height = (Math.random() * 20 + 10) + 'px';
+                rain.appendChild(drop);
             }
+        }
 
-            toggleItem("info")
-        </script>
-    </body>
+        createRain();
+        window.addEventListener('resize', createRain);
+    </script>
+</body>
 </html>
